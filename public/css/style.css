@@ -3,6 +3,7 @@ html, body {
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
+    font-size: 1rem;
     height: 100vh;
     margin: 0;
 }
@@ -43,4 +44,10 @@ html, body {
 }
 .m-b-md {
     margin-bottom: 30px;
+}
+#create-thread-form{
+    width:100%;
+}
+.create-thread{
+    margin-top:15px;
 }
