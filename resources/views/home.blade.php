@@ -1,8 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.main')
+
+@section('title', 'Account')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row">
+        <div class="offset-2"></div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
@@ -18,6 +21,7 @@
                 </div>
             </div>
         </div>
+        <div class="offset-2"></div>
     </div>
 </div>
 @endsection

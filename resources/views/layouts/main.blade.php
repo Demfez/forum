@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -26,19 +27,26 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div class="container-fluid">
     @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ url('/') }}">Home</a>
-                <a href="{{ route('login') }}">Login</a>
+        <div class="row">
+            <div class="offset-9">
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
+            </div>
+            <div class="col-md-3 links">
+                <a href="{{ url('/') }}">Home</a>
+                @auth
+                    <a href="{{ url('/home') }}">Account</a>
+                    <a href="{{ url('/logout') }}">Logout</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            </div>
+
         </div>
     @endif
 
