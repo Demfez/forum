@@ -71,24 +71,32 @@ class ThreadsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $threads
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $threads)
+    public function edit(Thread $thread)
     {
-        //
+        return view('edit_thread')->with([
+            'thread' => $thread
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thread  $threads
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $threads)
+    public function update(Thread $thread)
     {
-        //
+        $validated = request()->validate([
+            'thread_name' => 'required|min:3|max:255',
+            'content' => 'required'
+        ]);
+
+        $thread->update($validated);
+
+        return redirect('/thread_'.$thread->id.'/edit');
     }
 
     /**

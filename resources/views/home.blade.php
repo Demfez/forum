@@ -24,6 +24,7 @@
                                     <th>Title</th>
                                     <th>Content</th>
                                     <th>Comments</th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -33,6 +34,7 @@
                                     <td><a href="{{ url('thread_'.$thread->id) }}">{{ $thread->thread_name }}</a></td>
                                     <td>{{ $thread->content }}</td>
                                     <td>{{ $thread->comments_count }}</td>
+                                    <td><a class="btn btn-info" href="{{ url('thread_'.$thread->id.'/edit') }}" role="button">Edit</a></td>
                                 </tr>
                             @endforeach
 

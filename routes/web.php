@@ -25,3 +25,5 @@ Route::post('/create_thread', 'ThreadsController@store');
 Route::get('/thread_{thread}', 'ThreadsController@show');
 
 Route::get('/threads', 'ThreadsController@index');
+Route::get('/thread_{thread}/edit', 'ThreadsController@edit');
+Route::patch('/thread_{thread}/edit', 'ThreadsController@update');
