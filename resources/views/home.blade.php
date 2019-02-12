@@ -16,7 +16,30 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if(count($threads) > 0)
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+
+                            @foreach($threads as $thread)
+                                <tr>
+                                    <td>{{ $thread->id }}</td>
+                                    <td>{{ $thread->thread_name }}</td>
+                                    <td>{{ $thread->content }}</td>
+                                    <td>{{ $thread->comments_count }}</td>
+                                </tr>
+                            @endforeach
+
+                        </table>
+                    @else
+                        <p>You don't have any threads</p>
+                    @endif
                 </div>
             </div>
         </div>

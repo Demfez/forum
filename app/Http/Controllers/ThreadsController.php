@@ -40,9 +40,8 @@ class ThreadsController extends Controller
      */
     public function store()
     {
-        /*|min:3|max:255|unique:threads|numeric*/
         $validated = request()->validate([
-            'thread_name' => 'required',
+            'thread_name' => 'required|min:3|max:255|unique:threads',
             'content' => 'required'
         ]);
 
