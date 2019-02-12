@@ -27,4 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function threads(){
+        return $this->hasMany(Thread::class, 'topic_starter');
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Threads;
+use App\Thread;
 use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
@@ -20,7 +20,10 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        //
+        $threads = Thread::orderBy('updated_at', 'DESC')->get();
+        return view('all_threads')->with([
+            'threads' => $threads
+        ]);
     }
 
     /**
@@ -47,7 +50,7 @@ class ThreadsController extends Controller
 
         $validated['topic_starter'] = auth()->id();
 
-        Threads::create($validated);
+        Thread::create($validated);
 
         return redirect('/home');
     }
@@ -55,21 +58,23 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Threads  $threads
+     * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show(Threads $threads)
+    public function show(Thread $thread)
     {
-        //
+        return view('show_thread',[
+            'thread' => $thread
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Threads  $threads
+     * @param  \App\Thread  $threads
      * @return \Illuminate\Http\Response
      */
-    public function edit(Threads $threads)
+    public function edit(Thread $threads)
     {
         //
     }
@@ -78,10 +83,10 @@ class ThreadsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Threads  $threads
+     * @param  \App\Thread  $threads
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Threads $threads)
+    public function update(Request $request, Thread $threads)
     {
         //
     }
@@ -89,10 +94,10 @@ class ThreadsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Threads  $threads
+     * @param  \App\Thread  $threads
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Threads $threads)
+    public function destroy(Thread $threads)
     {
         //
     }

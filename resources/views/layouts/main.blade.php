@@ -30,12 +30,13 @@
 <div class="container-fluid">
     @if (Route::has('login'))
         <div class="row">
-            <div class="offset-9">
+            <div class="offset-8">
 
             </div>
-            <div class="col-md-3 links">
+            <div class="col-md-4 links">
                 <a href="{{ url('/') }}">Home</a>
                 @auth
+                    <a href="{{ url('/threads') }}">Threads</a>
                     <a href="{{ url('/home') }}">Account</a>
                     <a href="{{ url('/logout') }}">Logout</a>
                 @else

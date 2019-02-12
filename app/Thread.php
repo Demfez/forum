@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Threads extends Model
+class Thread extends Model
 {
     protected $table = 'threads';
 
@@ -14,4 +14,8 @@ class Threads extends Model
         'topic_starter',
         'comments_count'
     ];
+
+    public function author(){
+        return $this->belongsTo(User::class,'topic_starter','id');
+    }
 }

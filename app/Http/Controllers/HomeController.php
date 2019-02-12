@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Threads;
+use App\Thread;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +22,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Threads $threads)
+    public function index(Thread $threads)
     {
         $threads = $threads->where('topic_starter', auth()->id())->get();
 

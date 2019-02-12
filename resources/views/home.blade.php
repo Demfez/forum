@@ -30,7 +30,7 @@
                             @foreach($threads as $thread)
                                 <tr>
                                     <td>{{ $thread->id }}</td>
-                                    <td>{{ $thread->thread_name }}</td>
+                                    <td><a href="{{ url('thread_'.$thread->id) }}">{{ $thread->thread_name }}</a></td>
                                     <td>{{ $thread->content }}</td>
                                     <td>{{ $thread->comments_count }}</td>
                                 </tr>
