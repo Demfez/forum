@@ -102,11 +102,13 @@ class ThreadsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $threads
-     * @return \Illuminate\Http\Response
+     * @param  \App\Thread  $thread
+     * @return \Illuminate\Http\Redirect
      */
-    public function destroy(Thread $threads)
+    public function delete(Thread $thread)
     {
-        //
+        Thread::destroy($thread->id);
+
+        return redirect('/home');
     }
 }

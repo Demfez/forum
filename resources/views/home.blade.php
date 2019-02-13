@@ -25,6 +25,7 @@
                                     <th>Content</th>
                                     <th>Comments</th>
                                     <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
 
@@ -35,7 +36,19 @@
                                     <td>{{ $thread->content }}</td>
                                     <td>{{ $thread->comments_count }}</td>
                                     <td><a class="btn btn-info" href="{{ url('thread_'.$thread->id.'/edit') }}" role="button">Edit</a></td>
+                                    <td><form method="POST" action="/thread_{{ $thread->id }}">
+
+                                            @csrf
+
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+
+
+                                        </form>
+                                    </td>
                                 </tr>
+
                             @endforeach
 
                         </table>
@@ -52,4 +65,8 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal for delete thread-->
+
 @endsection

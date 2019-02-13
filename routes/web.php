@@ -27,3 +27,4 @@ Route::get('/thread_{thread}', 'ThreadsController@show');
 Route::get('/threads', 'ThreadsController@index');
 Route::get('/thread_{thread}/edit', 'ThreadsController@edit');
 Route::patch('/thread_{thread}/edit', 'ThreadsController@update');
+Route::delete('/thread_{thread}', 'ThreadsController@delete');
