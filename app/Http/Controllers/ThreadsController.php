@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use Gate;
 use Illuminate\Http\Request;
+
 
 class ThreadsController extends Controller
 {
@@ -14,7 +16,7 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the threads.
      *
      * @return \Illuminate\Http\Response
      */
@@ -27,7 +29,7 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new thread.
      *
      * @return \Illuminate\Http\Response
      */
@@ -37,7 +39,7 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created thread in storage.
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,7 +58,7 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified thread.
      *
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
@@ -69,26 +71,34 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified thread.
      *
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function edit(Thread $thread)
     {
+        //abort_if($thread->topic_starter !== auth()->id(), 403); //easy way without policies
+
+        abort_if(Gate::denies('update', $thread), 403);
+
         return view('edit_thread')->with([
             'thread' => $thread
         ]);
+
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified thread in storage.
      *
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
     public function update(Thread $thread)
     {
+
+        abort_if(Gate::denies('update', $thread), 403);
+
         $validated = request()->validate([
             'thread_name' => 'required|min:3|max:255',
             'content' => 'required'
@@ -100,7 +110,7 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified thread from storage.
      *
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Redirect
