@@ -17,6 +17,36 @@
             </div>
         </div>
     </div>
+    @if(count($thread->answers))
+        @foreach($thread->answers as $answer)
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            {{ $answer->text }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @endforeach
+    @endif
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" action="{{ url('thread_'.$thread->id.'') }}">
+                @csrf
+                @method('PATCH')
+                <div class="form-group">
+                    <label for="thread_answer">Answer:</label>
+                    <textarea name="thread_answer" class="form-control" id="thread_answer">{{ old('thread_answer') }}</textarea>
+                </div>
+
+                <input type="submit" value="Send" class="btn btn-outline-success">
+            </form>
+        </div>
+    </div>
 </div>
 
 @endsection

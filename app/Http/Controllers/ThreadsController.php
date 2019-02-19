@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Answers;
 use App\Thread;
 use Gate;
 use Illuminate\Http\Request;
@@ -55,6 +56,25 @@ class ThreadsController extends Controller
         Thread::create($validated);
 
         return redirect('/home');
+    }
+
+    public function storeAnswer(Thread $thread)
+    {
+
+        $validated = request()->validate([
+            'thread_answer' => 'required|min:3'
+        ]);
+
+        $validated['text'] = request()->input('thread_answer');
+        $validated['thread_id'] = $thread->id;
+        $validated['user_id'] = auth()->id();
+
+        Answers::create($validated);
+
+        $thread->comments_count++;
+        $thread->save();
+
+        return redirect()->back();
     }
 
     /**

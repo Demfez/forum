@@ -18,4 +18,8 @@ class Thread extends Model
     public function author(){
         return $this->belongsTo(User::class,'topic_starter','id');
     }
+
+    public function answers(){
+        return $this->hasMany(Answers::class, 'thread_id', 'id');
+    }
 }

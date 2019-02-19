@@ -23,6 +23,7 @@ Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home'])->middlew
 Route::get('/create_thread', 'ThreadsController@create');
 Route::post('/create_thread', 'ThreadsController@store');
 Route::get('/thread_{thread}', 'ThreadsController@show');
+Route::patch('/thread_{thread}', 'ThreadsController@storeAnswer');
 
 Route::get('/threads', 'ThreadsController@index');
 Route::get('/thread_{thread}/edit', 'ThreadsController@edit');
