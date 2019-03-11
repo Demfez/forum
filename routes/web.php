@@ -19,6 +19,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home'])->middleware('verified');
+Route::patch('/edit_profile', ['uses' => 'HomeController@updateProfile'])->middleware('verified');
 
 Route::get('/create_thread', 'ThreadsController@create');
 Route::post('/create_thread', 'ThreadsController@store');

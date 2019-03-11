@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -18,16 +19,18 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Thread $threads
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Thread $threads)
     {
+        $user = Auth::user();
         $threads = $threads->where('topic_starter', auth()->id())->get();
 
         return view('home')->with([
-            'threads' => $threads
+            'threads' => $threads,
+            'user' => $user
         ]);
     }
 }

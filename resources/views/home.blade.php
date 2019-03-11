@@ -7,7 +7,38 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header"><b>Profile</b></div>
+
+                <div class="card-body">
+                    <form action="POST" action="{{ url('edit_profile') }}">
+                        @method('PATCH')
+                        <div class="form-group">
+                            <label for="user_name">Name:</label>
+                            <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_email">Public email:</label>
+                            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $user->email }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_location">Location:</label>
+                            <input type="text" name="user_location" class="form-control" id="user_location" value="{{ $user->location }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_bio">Bio:</label>
+                            <textarea name="user_bio" class="form-control" id="user_bio">{{ $user->bio }}</textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><b>Dashboard</b></div>
 
                 <div class="card-body">
                     @if (session('status'))
