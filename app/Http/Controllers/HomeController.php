@@ -20,7 +20,6 @@ class HomeController extends Controller
 
     /**
      * @param Thread $threads
-     * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Thread $threads)

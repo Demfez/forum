@@ -14,9 +14,9 @@ class UsersAddNewFields extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('name')->default(NULL)->after('id');
-            $table->string('location')->default(NULL)->after('email_verified_at');
-            $table->text('bio')->default(NULL)->after('password');
+            $table->string('name')->default('')->after('id');
+            $table->string('location')->default('')->after('email_verified_at');
+            $table->string('bio')->default('')->after('password');
         });
     }
 
