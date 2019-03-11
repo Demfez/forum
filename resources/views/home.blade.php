@@ -10,7 +10,8 @@
                 <div class="card-header"><b>Profile</b></div>
 
                 <div class="card-body">
-                    <form action="POST" action="{{ url('edit_profile') }}">
+                    <form method="POST" action="{{ url('edit_profile') }}">
+                        @csrf
                         @method('PATCH')
                         <div class="form-group">
                             <label for="user_name">Name:</label>
@@ -18,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label for="user_email">Public email:</label>
-                            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $user->email }}">
+                            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $user->email }}" data-toggle="tooltip" data-placement="left" title="You need to re-validate your email if you change it">
                         </div>
                         <div class="form-group">
                             <label for="user_location">Location:</label>
@@ -28,7 +29,7 @@
                             <label for="user_bio">Bio:</label>
                             <textarea name="user_bio" class="form-control" id="user_bio">{{ $user->bio }}</textarea>
                         </div>
-
+                        <button type="submit" class="btn btn-outline-info">Update</button>
                     </form>
                 </div>
             </div>
