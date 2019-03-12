@@ -10,9 +10,12 @@
                 <div class="card-header"><b>Profile</b></div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ url('edit_profile') }}">
+                    <form enctype="multipart/form-data" method="POST" action="{{ url('home') }}">
                         @csrf
-                        @method('PATCH')
+                        <div class="form-group">
+                            <label for="user_photo">Photo:</label>
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg" name="user_photo" id="user_photo" >
+                        </div>
                         <div class="form-group">
                             <label for="user_name">Name:</label>
                             <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}">

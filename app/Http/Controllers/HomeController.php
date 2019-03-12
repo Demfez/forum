@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Thread;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -38,7 +39,18 @@ class HomeController extends Controller
     {
         $request->validate([
             'user_email' => 'required|email|min:3|max:255',
+            'user_photo' => 'image'
         ]);
+
+        $uploadedFile = $request->file('user_photo');
+        $filename = time(). '_' . auth()->id().'.'.$uploadedFile->getClientOriginalExtension();
+
+        Storage::disk('local')->putFileAs(
+            'uploads/',
+            $uploadedFile,
+            $filename
+        );
+
         $profile = User::find(Auth::id());
 
         $email = $profile->email;
@@ -47,6 +59,7 @@ class HomeController extends Controller
         $profile->email = $request->input('user_email');
         $profile->location = $request->input('user_location');
         $profile->bio = $request->input('user_bio');
+        $profile->user_photo = $filename;
         $profile->save();
 
         if ($email !== $request->input('user_email')) {
