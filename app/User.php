@@ -28,7 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function threads(){
+    public function threads()
+    {
         return $this->hasMany(Thread::class, 'topic_starter');
     }
 }

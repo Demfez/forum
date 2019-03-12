@@ -85,7 +85,7 @@ class ThreadsController extends Controller
      */
     public function show(Thread $thread)
     {
-        return view('show_thread',[
+        return view('show_thread', [
             'thread' => $thread
         ]);
     }
@@ -105,7 +105,6 @@ class ThreadsController extends Controller
         return view('edit_thread')->with([
             'thread' => $thread
         ]);
-
     }
 
     /**

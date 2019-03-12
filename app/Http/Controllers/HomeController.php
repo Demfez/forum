@@ -49,8 +49,8 @@ class HomeController extends Controller
         $profile->bio = $request->input('user_bio');
         $profile->save();
 
-        if($email !== $request->input('user_email')){
-            $profile->email_verified_at = NULL;
+        if ($email !== $request->input('user_email')) {
+            $profile->email_verified_at = null;
             $profile->save();
         }
 

@@ -15,11 +15,13 @@ class Thread extends Model
         'comments_count'
     ];
 
-    public function author(){
-        return $this->belongsTo(User::class,'topic_starter','id');
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'topic_starter', 'id');
     }
 
-    public function answers(){
+    public function answers()
+    {
         return $this->hasMany(Answers::class, 'thread_id', 'id');
     }
 }
