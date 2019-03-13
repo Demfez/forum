@@ -10,27 +10,36 @@
                 <div class="card-header"><b>Profile</b></div>
 
                 <div class="card-body">
+
                     <form enctype="multipart/form-data" method="POST" action="{{ url('home') }}">
                         @csrf
-                        <div class="form-group">
-                            <label for="user_photo">Photo:</label>
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" name="user_photo" id="user_photo" >
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <img src="{{ asset("storage/uploads/$user->user_photo") }}" class="img-fluid rounded border">
+                                    <label for="user_photo">Photo:</label>
+                                    <input type="file" accept=".jpg, .jpeg, .png, .svg" name="user_photo" id="user_photo">
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="user_name">Name:</label>
+                                    <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_email">Public email:</label>
+                                    <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $user->email }}" data-toggle="tooltip" data-placement="left" title="You need to re-validate your email if you change it">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_location">Location:</label>
+                                    <input type="text" name="user_location" class="form-control" id="user_location" value="{{ $user->location }}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="user_name">Name:</label>
-                            <input type="text" name="user_name" class="form-control" id="user_name" value="{{ $user->name }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="user_email">Public email:</label>
-                            <input type="text" name="user_email" class="form-control" id="user_email" value="{{ $user->email }}" data-toggle="tooltip" data-placement="left" title="You need to re-validate your email if you change it">
-                        </div>
-                        <div class="form-group">
-                            <label for="user_location">Location:</label>
-                            <input type="text" name="user_location" class="form-control" id="user_location" value="{{ $user->location }}">
-                        </div>
+
                         <div class="form-group">
                             <label for="user_bio">Bio:</label>
-                            <textarea name="user_bio" class="form-control" id="user_bio">{{ $user->bio }}</textarea>
+                            <textarea name="user_bio" class="form-control" id="user_bio" rows="7">{{ $user->bio }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-outline-info">Update</button>
                     </form>

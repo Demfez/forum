@@ -45,7 +45,7 @@ class HomeController extends Controller
         $uploadedFile = $request->file('user_photo');
         $filename = time(). '_' . auth()->id().'.'.$uploadedFile->getClientOriginalExtension();
 
-        Storage::disk('local')->putFileAs(
+        Storage::disk('public')->putFileAs(
             'uploads/',
             $uploadedFile,
             $filename
