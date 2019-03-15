@@ -24,6 +24,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            {{ $answer->user->name }}<br>
+                            <img src="{{ asset("storage/uploads/".$answer->user->user_photo) }}" class="img-thumbnail" style="max-width:120px">
                             {{ $answer->text }}
                         </div>
                     </div>
