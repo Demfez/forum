@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answers;
+use App\Http\Requests\ThreadValidation;
 use App\Thread;
 use Gate;
 use Illuminate\Http\Request;
@@ -42,15 +43,12 @@ class ThreadsController extends Controller
     /**
      * Store a newly created thread in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @param ThreadValidation $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store()
+    public function store(ThreadValidation $request)
     {
-        $validated = request()->validate([
-            'thread_name' => 'required|min:3|max:255|unique:threads',
-            'content' => 'required'
-        ]);
-
+        $validated = $request->validated();
         $validated['topic_starter'] = auth()->id();
 
         Thread::create($validated);
@@ -110,18 +108,16 @@ class ThreadsController extends Controller
     /**
      * Update the specified thread in storage.
      *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
+     * @param Thread $thread
+     * @param ThreadValidation $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Thread $thread)
+    public function update(Thread $thread, ThreadValidation $request)
     {
 
         abort_if(Gate::denies('update', $thread), 403);
 
-        $validated = request()->validate([
-            'thread_name' => 'required|min:3|max:255',
-            'content' => 'required'
-        ]);
+        $validated = $request->validated();
 
         $thread->update($validated);
 
